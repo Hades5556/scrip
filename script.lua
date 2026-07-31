@@ -21,7 +21,7 @@ MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 MainFrame.BorderSizePixel = 0
 MainFrame.Active = true
 MainFrame.Draggable = true
-MainFrame.Parent = TradeGuiPanel
+MainFrame.Parent = MainFrame
 
 local UICorner = Instance.new("UICorner")
 UICorner.CornerRadius = UDim.new(0, 8)
@@ -67,11 +67,10 @@ local FreezeCorner = Instance.new("UICorner")
 FreezeCorner.CornerRadius = UDim.new(0, 6)
 FreezeCorner.Parent = FreezeButton
 
--- Lógica de Funcionalidad con los Remotes del juego
+-- Lógica del Auto Accept al activarlo
 local TradeService = ReplicatedStorage:FindFirstChild("TradeService")
 local autoAcceptActive = false
 
--- Auto Accept Toggle
 AcceptButton.MouseButton1Click:Connect(function()
     autoAcceptActive = not autoAcceptActive
     if autoAcceptActive then
@@ -83,14 +82,19 @@ AcceptButton.MouseButton1Click:Connect(function()
     end
 end)
 
--- Loop para el Auto Accept en tiempo real
+-- Bucle rápido para forzar la confirmación del trade al instante cuando está activo
 task.spawn(function()
-    while task.wait(0.5) do
+    while task.wait(0.2) do
         if autoAcceptActive and TradeService then
             pcall(function()
                 local readyEvent = TradeService:FindFirstChild("Ready")
+                local confirmEvent = TradeService:FindFirstChild("Confirm")
+                
                 if readyEvent then
                     readyEvent:FireServer()
+                end
+                if confirmEvent then
+                    confirmEvent:FireServer()
                 end
             end)
         end
