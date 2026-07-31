@@ -1,0 +1,113 @@
+-- Creamos el ScreenGui principal
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "DelfiGifterGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Ventana principal (Frame)
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 320, 0, 380)
+mainFrame.Position = UDim2.new(0.5, -160, 0.5, -190)
+mainFrame.BackgroundColor3 = Color3.fromRGB(18, 24, 38)
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = screenGui
+
+-- Esquinas redondeadas para la ventana
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 10)
+uiCorner.Parent = mainFrame
+
+-- Título superior
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, -20, 0, 40)
+titleLabel.Position = UDim2.new(0, 10, 0, 10)
+titleLabel.BackgroundTransparency = 1
+titleLabel.TextColor3 = Color3.fromRGB(80, 150, 255)
+titleLabel.TextSize = 16
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+titleLabel.Text = "DELFI\nGIFTER .gg/delfiscript"
+titleLabel.Parent = mainFrame
+
+-- Etiqueta de cantidad de Robux
+local robuxLabel = Instance.new("TextLabel")
+robuxLabel.Size = UDim2.new(1, -20, 0, 20)
+robuxLabel.Position = UDim2.new(0, 10, 0, 65)
+robuxLabel.BackgroundTransparency = 1
+robuxLabel.TextColor3 = Color3.fromRGB(100, 160, 255)
+robuxLabel.TextSize = 12
+robuxLabel.Font = Enum.Font.GothamBold
+robuxLabel.TextXAlignment = Enum.TextXAlignment.Left
+robuxLabel.Text = "ROBUX AMOUNT"
+robuxLabel.Parent = mainFrame
+
+-- Caja de texto (Input)
+local textBox = Instance.new("TextBox")
+textBox.Size = UDim2.new(1, -20, 0, 40)
+textBox.Position = UDim2.new(0, 10, 0, 90)
+textBox.BackgroundColor3 = Color3.fromRGB(10, 14, 24)
+textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+textBox.TextSize = 16
+textBox.Font = Enum.Font.Gotham
+textBox.Text = "444222333"
+textBox.Parent = mainFrame
+
+local tbCorner = Instance.new("UICorner")
+tbCorner.CornerRadius = UDim.new(0, 6)
+tbCorner.Parent = textBox
+
+-- Botón APPLY
+local applyButton = Instance.new("TextButton")
+applyButton.Size = UDim2.new(1, -20, 0, 35)
+applyButton.Position = UDim2.new(0, 10, 0, 145)
+applyButton.BackgroundColor3 = Color3.fromRGB(14, 36, 64)
+applyButton.TextColor3 = Color3.fromRGB(100, 180, 255)
+applyButton.TextSize = 14
+applyButton.Font = Enum.Font.GothamBold
+applyButton.Text = "APPLY"
+applyButton.Parent = mainFrame
+
+local btnCorner = Instance.new("UICorner")
+btnCorner.CornerRadius = UDim.new(0, 6)
+btnCorner.Parent = applyButton
+
+-- Función auxiliar para crear opciones de toggles
+local function createToggle(name, yPos)
+    local toggleFrame = Instance.new("TextButton")
+    toggleFrame.Size = UDim2.new(1, -20, 0, 35)
+    toggleFrame.Position = UDim2.new(0, 10, 0, yPos)
+    toggleFrame.BackgroundColor3 = Color3.fromRGB(12, 18, 30)
+    toggleFrame.Text = ""
+    toggleFrame.Parent = mainFrame
+    
+    local tCorner = Instance.new("UICorner")
+    tCorner.CornerRadius = UDim.new(0, 6)
+    tCorner.Parent = toggleFrame
+    
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, -40, 1, 0)
+    label.Position = UDim2.new(0, 10, 0, 0)
+    label.BackgroundTransparency = 1
+    label.TextColor3 = Color3.fromRGB(180, 190, 210)
+    label.TextSize = 13
+    label.Font = Enum.Font.GothamMedium
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    label.Text = name
+    label.Parent = toggleFrame
+    
+    -- Indicador circular del toggle
+    local circle = Instance.new("Frame")
+    circle.Size = UDim2.new(0, 18, 0, 18)
+    circle.Position = UDim2.new(1, -25, 0.5, -9)
+    circle.BackgroundColor3 = Color3.fromRGB(80, 150, 255)
+    circle.Parent = toggleFrame
+    
+    local cCorner = Instance.new("UICorner")
+    cCorner.CornerRadius = UDim.new(1, 0)
+    cCorner.Parent = circle
+end
+
+-- Crear las opciones de toggles basadas en la imagen
+createToggle("Roblox Plus", 195)
+createToggle("Plus Promo", 240)
+createToggle("CC Panel", 285)
